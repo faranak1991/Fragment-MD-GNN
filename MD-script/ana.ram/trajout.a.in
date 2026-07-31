@@ -1,0 +1,17 @@
+parm ../0d3_a_no_water_caprin.parm7
+
+trajin ../PROD-1-1/03_npt_5.nc 1 5000000000 10
+
+autoimage
+
+center :1-1152 mass origin
+image origin center familiar
+
+strip :WAT outprefix ../out.center/prmtop
+strip :Cl- outprefix ../out.center/prmtop
+strip :Na+ outprefix ../out.center/prmtop
+
+trajout ../out.center/ctstep1.a.ns.nc
+
+run
+quit
