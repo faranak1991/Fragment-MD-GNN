@@ -1,0 +1,15 @@
+Minimize
+ &cntrl
+  imin=1, 
+  ntx=1,                     ! fresh start
+  irest=0,
+  ntmin=1,                   ! sd followed by cg
+  maxcyc=10000,              ! total step
+  ncyc=2000,                 ! first 2000 step sd and rest cg
+  ntpr=500,                  ! print energy every 500 step
+  ntwx=0, ntwv=0, ntwf=0,    ! no traj/veloc
+  cut=10.0,                  ! nonbonded cutoff
+ /
+
+  
+  

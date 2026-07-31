@@ -1,0 +1,65 @@
+NVT simulation for common production-level simulations
+ &cntrl
+    imin=0,        ! No minimization
+    irest=0,       ! This is NOT a restart of an old MD simulation
+    ntx=1,         ! So our inpcrd file has no velocities
+
+    ! Temperature control
+    ntt=3,         ! Langevin dynamics
+    gamma_ln=3.0,  ! Friction coefficient (ps^-1)
+    tempi=0.0,   ! Initial temp -- give it some small random velocities
+    temp0=310.0,   ! Target temperature
+    ig = -1,
+    tautp=1,
+
+    ! Potential energy control
+    cut=10.0,       ! nonbonded cutoff, in Angstroms
+    
+    ! MD settings
+    nstlim=1000000,  ! 100K steps, 1000 ps total
+    dt=0.001,      ! time step (ps)
+
+    ! SHAKE
+    ntc=2,         ! Constrain bonds containing hydrogen
+    ntf=2,         ! Do not calculate forces of bonds containing hydrogen
+
+    ! Control how often information is printed
+    ntpr=1000,     ! Print energies every 1000 steps
+    ntwx=1000,     ! Print coordinates every 1000 steps to the trajectory
+    ntwr=50000,    ! Print a restart file every 10K steps (can be less frequent)
+!   ntwv=-1,       ! Uncomment to also print velocities to trajectory
+!   ntwf=-1,       ! Uncomment to also print forces to trajectory
+    ntxo=2,        ! Write NetCDF format
+    ioutfm=1,      ! Write NetCDF format (always do this!)
+
+    ! Wrap coordinates when printing them to the same unit cell
+    iwrap=1,
+
+    ! Restraint options
+    ntr=1,         ! Positional restraints for proteins, sugars, and ligands
+    nmropt=1,
+
+    ! Set water atom/residue names for SETTLE recognition
+    watnam='WAT',  ! Water residues are named WAT
+    owtnm='O',     ! Water oxygens are named O
+ /
+
+ &ewald
+    vdwmeth = 0,
+ /
+
+Protein posres
+5.0
+FIND
+CA * * *
+SEARCH
+RES 1 16 17 32 33 48 49 64 65 80 81 96 97 112 113 128 129 144 145 160 161 176 177 192 193 208 209 224 225 240 241 256 257 272 273 288 289 304 305 320 321 336 337 352 353 368 369 384 385 400 401 416 417 432 433 448 449 464 465 480 481 496 497 512 513 528 529 544 545 560 561 576 577 592 593 608 609 624 625 640 641 656 657 672 673 688 689 704 705 720 721 736 737 752 753 768 769 784 785 800 801 816 817 832 833 848 849 864 865 880 881 896 897 912 913 928 929 944 945 960 961 976 977 992 993 1008 1009 1024
+END
+
+&wt type='TEMP0', istep1=0, istep2=100000, value1=0.0, value2=310.0 /
+&wt type='TEMP0', istep1=100001, istep2=1000000, value1=310.0,value2=310.0 /
+&wt type='END'
+ /
+END
+END
+
