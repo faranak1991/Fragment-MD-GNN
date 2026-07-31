@@ -1,0 +1,13 @@
+parm 0d5_no_water_caprin.parm7
+
+trajin PROD-1/03_npt-5.nc 50000 50000    # 34595 34595
+
+
+reference PROD-1/03_npt-5.rst7
+center :1-1152 origin
+image origin center familiar
+
+
+
+trajout before_103-water_remove_prod1.pdb
+run

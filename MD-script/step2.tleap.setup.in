@@ -1,0 +1,22 @@
+source leaprc.protein.ff14SB
+source leaprc.water.tip4pd
+
+
+x = loadPDB amber_n_na.fixed.pdb
+
+
+set default FlexibleWater on
+charge x
+check x
+
+set x box { 104 104 104 }
+
+
+saveAmberParm x 0d3_a_no_water_caprin.parm7 0d3_a_no_water_caprin.rst7
+savepdb x 0d3_a_no_water_caprin.pdb
+
+#saveAmberParm x 0.5.no.water.caprin.parm7 0.5.no.water.caprin.rst7
+#savepdb x 0.5.no.water.caprin.pdb
+
+quit
+

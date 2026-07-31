@@ -1,0 +1,17 @@
+source leaprc.protein.ff14SB
+source leaprc.water.tip4pd
+
+
+mol = loadpdb before_103-water_remove_prod1.pdb 
+
+## before_water_remove.pdb
+
+
+## Randomly place 32267 Na+ ions (approx. 1/2 of 64535 waters removed)  then 1/3 * 32267 =10,755
+addionsrand mol Na+ 10755
+
+savepdb mol amber_n_na.pdb
+
+quit
+
+
